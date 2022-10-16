@@ -61,6 +61,6 @@ async def send_message(request: Request):
   # send_email(body, subject = param["subject"], receiver = 'David.Laguardia@statkraft.com', attachments='', mode = 'html')
 
 
-if __name__ == "__main__":
-  # "uvicorn main:app --reload"
-    uvicorn.run(app, host="localhost", port=7676)
+# if __name__ == "__main__":
+  # uvicorn main:app --reload
+    # uvicorn.run(app, host="localhost", port=7676)
