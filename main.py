@@ -37,7 +37,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
 
-@app.get("/")
+@app.get("/home")
 async def render(request: Request):
     return templates.TemplateResponse("index.html", {"request": request}) 
 
