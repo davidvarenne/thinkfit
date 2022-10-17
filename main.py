@@ -4,32 +4,29 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
 from fastapi.responses import JSONResponse
-# import win32com.client as win32
+import smtplib, ssl
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 
-# def send_email(body, subject, receiver, attachments='', mode = 'text'):
+def send_email(sender,password,receiver,html,subject):
+  sender_email = sender
+  receiver_email = receiver
+  password = password
 
-#     assert(isinstance(subject, str))
+  message = MIMEMultipart("alternative")
+  message["Subject"] = subject
+  message["From"] = sender_email
+  message["To"] = receiver_email
 
-
-#     outlook = win32.Dispatch('outlook.application')
-#     mail = outlook.CreateItem(0)
-#     mail.To = receiver
-#     mail.Subject = subject
-
-#     if mode =='text':
-#         mail.Body = body
-#     elif mode == 'html':
-#         mail.HTMLBody  = body
-        
-#     #In case you want to attach a file to the email
-#     if attachments!='':
-#         for attach in attachments:
-#             mail.Attachments.Add(attach)
-
-#     mail.Send()
-
-#     return
+  part2 = MIMEText(html, "html")
+  message.attach(part2)
+  context = ssl.create_default_context()
+  with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+      server.login(sender_email, password)
+      server.sendmail(
+          sender_email, receiver_email, message.as_string()
+      )
 
 
 app = FastAPI()
@@ -49,18 +46,28 @@ async def render(request: Request):
 async def send_message(request: Request):
   print('sending email')
   param = request.query_params._dict
-  body = """<html> 
-                    <body> 
-                    <div>"""f'{param["name"]}'"""</div> 
-                    <div>"""f'{param["email"]}'"""</div> 
-                    <div>"""f'{param["subject"]}'"""</div> 
-                    <div>"""f'{param["message"]}'"""</div> 
-                    </body>
-            </html> 
+  html = """
+          <html>
+            <body>
+              <p>Ciao, hai un nuovo messaggio da:
+                """f'{param["name"]}'"""<br>
+                """f'{param["message"]}'"""<br>
+                """f'{param["email"]}'"""
+              </p>
+            </body>
+          </html>
           """
-  # send_email(body, subject = param["subject"], receiver = 'David.Laguardia@statkraft.com', attachments='', mode = 'html')
+
+  send_email("fatimatringali.thinkfit@gmail.com","naujuvjnnmszcabf","davidjohnlaguardia@gmail.com",html, param['subject'])
+  send_email("fatimatringali.thinkfit@gmail.com","naujuvjnnmszcabf","f.tringali92@gmail.com",html, param['subject'])
 
 
-# if __name__ == "__main__":
+
+
+
+
+
+
+if __name__ == "__main__":
   # uvicorn main:app --reload
-    # uvicorn.run(app, host="localhost", port=7676)
+    uvicorn.run(app, host="localhost", port=7676)
