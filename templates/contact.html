@@ -218,7 +218,12 @@
                   'message': document.getElementById('mess_messaggio').value,
                 },
           success: function (data) {
-            updateajax(data);
+            
+            document.getElementById('mess_nome').value = ''
+            document.getElementById('mess_email').value = ''
+            document.getElementById('mess_info').value = ''
+            document.getElementById('mess_messaggio').value = ''
+            window.alert("Messaggio Inviato!");
           }
         })
         });
