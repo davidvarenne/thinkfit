@@ -41,28 +41,37 @@ async def index(request: Request):
 @app.get("/contacts")
 async def render(request: Request):
     return templates.TemplateResponse("contact.html", {"request": request})
+  
+@app.get("/comingsoon")
+async def render(request: Request):
+    return templates.TemplateResponse("comingsoon.html", {"request": request})
 
 @app.get("/send_message")
 async def send_message(request: Request):
   print('sending email')
   param = request.query_params._dict
-  html = """
-          <html>
-            <body>
-              <p>Ciao, hai un nuovo messaggio da:
-                """f'{param["name"]}'"""<br>
-                """f'{param["message"]}'"""<br>
-                """f'{param["email"]}'"""
-              </p>
-            </body>
-          </html>
-          """
 
-  # send_email("fatimatringali.thinkfit@gmail.com","naujuvjnnmszcabf","davidjohnlaguardia@gmail.com",html, param['subject'])
-  # send_email("fatimatringali.thinkfit@gmail.com","naujuvjnnmszcabf","f.tringali92@gmail.com",html, param['subject'])
+  if '@' not in param["email"]:
+    pass
+    message = False
+  else:
+    html = """
+            <html>
+              <body>
+                <p>Ciao, hai un nuovo messaggio da:
+                  """f'{param["name"]}'"""<br>
+                  """f'{param["message"]}'"""<br>
+                  """f'{param["email"]}'"""
+                </p>
+              </body>
+            </html>
+            """
 
+    send_email("fatimatringali.thinkfit@gmail.com","naujuvjnnmszcabf","davidjohnlaguardia@gmail.com",html, param['subject'])
+    send_email("fatimatringali.thinkfit@gmail.com","naujuvjnnmszcabf","f.tringali92@gmail.com",html, param['subject'])
+    message = True
 
-
+  return JSONResponse(content=message)
 
 
 

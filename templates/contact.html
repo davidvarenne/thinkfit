@@ -185,7 +185,48 @@
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+  
+  <style>
+    #overlay{	
+  position: fixed;
+  top: 0;
+  z-index: 100 !important;
+  width: 100%;
+  height:100%;
+  display: none;
+  background: rgba(0,0,0,0.6);
+}
+.cv-spinner {
+  height: 100%;
+  display: flex;
+  z-index: 100 !important;
+  justify-content: center;
+  align-items: center;  
+}
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px #ddd solid;
+  border-top: 4px #7ae0ff solid;
+  z-index: 100 !important;
+  border-radius: 50%;
+  animation: sp-anime 0.8s infinite linear;
+}
+@keyframes sp-anime {
+  100% { 
+    transform: rotate(360deg); 
+  }
+}
+.is-hide{
+  display:none;
+}
+  </style>
 
+  <div id="overlay">
+    <div class="cv-spinner">
+      <span class="spinner"></span>
+    </div>
+  </div>
 
   <script src="../static/js/jquery.min.js"></script>
   <script src="../static/js/jquery-migrate-3.0.1.min.js"></script>
@@ -205,8 +246,12 @@
   <!-- <script src="../static/js/google-map.js"></script> -->
   <script src="../static/js/main.js"></script>
   <script>
-    $('#formbutton').click(function(e){          
+    $('#formbutton').click(function(e){      
+      
+      
+    $("#overlay").fadeIn(100);
     e.preventDefault();
+
     $(document).ready(function() {
         $.ajax({
           url: '/send_message',
@@ -218,14 +263,22 @@
                   'message': document.getElementById('mess_messaggio').value,
                 },
           success: function (data) {
-            
-            document.getElementById('mess_nome').value = ''
-            document.getElementById('mess_email').value = ''
-            document.getElementById('mess_info').value = ''
-            document.getElementById('mess_messaggio').value = ''
-            window.alert("Messaggio Inviato!");
+
+
+            if (data) {
+              window.alert("Messaggio Inviato!");
+              document.getElementById('mess_nome').value = ''
+              document.getElementById('mess_email').value = ''
+              document.getElementById('mess_info').value = ''
+              document.getElementById('mess_messaggio').value = ''
+            } else {
+              window.alert("Messaggio non inviato! Controlla email");
+            }            
           }
-        })
+        }).done(function() {
+              setTimeout(function(){
+                $("#overlay").fadeOut(100);
+                  },100);});
         });
     });
 
