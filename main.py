@@ -79,4 +79,4 @@ async def send_message(request: Request):
 
 if __name__ == "__main__":
   # uvicorn main:app --reload
-    uvicorn.run(app, host="localhost", port=7676)
+    uvicorn.run(app, host="localhost", port=8888)

@@ -7752,7 +7752,7 @@ h1, h2, h3, h4, h5,
     background: #b18982;
     z-index: 0;
     content: '';
-    opacity: 0;
+    opacity: 0.4;
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     -webkit-transition: all 0.3s ease;
@@ -7763,7 +7763,7 @@ h1, h2, h3, h4, h5,
     height: 400px; }
   .package-program .text {
     z-index: 1;
-    opacity: 0;
+    opacity: 1;
     -moz-transition: all 0.2s ease;
     -o-transition: all 0.2s ease;
     -webkit-transition: all 0.2s ease;
@@ -7776,7 +7776,7 @@ h1, h2, h3, h4, h5,
       font-weight: 500;
       color: #fff; }
   .package-program:hover:after, .package-program:focus:after {
-    opacity: .5; }
+    opacity: 0.95; }
   .package-program:hover .text, .package-program:focus .text {
     opacity: 1; }
 
