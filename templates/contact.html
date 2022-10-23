@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>ThinkFit</title>
+    <title>ThinkFit: Il Fitness a Taranto su misura per te</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -131,8 +131,25 @@
                         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                     }).addTo(map);
             
+
+            var customicon = L.icon({
+                  iconUrl: '../static/images/loc.png',
+                  // shadowUrl: 'leaf-shadow.png',
+
+                  // iconSize:     [38, 95], // size of the icon
+                  // shadowSize:   [50, 64], // size of the shadow
+                  // iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                  // shadowAnchor: [4, 62],  // the same for the shadow
+                  // popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+              });
+
+
+
             var marker = L.marker([40.402175, 17.259345]).addTo(map);
             marker.bindPopup("Siamo qui!");
+
+
+
             marker.on('click', function (e) {
                 this.openPopup();
             });
@@ -164,9 +181,9 @@
           <div class="col-lg-3 col-md-6 mb-5 mb-md-5">
             <div class="ftco-footer-widget mb-4">
               <ul class="ftco-footer-social list-unstyled float-md-left float-lft">
-                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                <li class="ftco-animate"><a><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a><span class="icon-facebook"></span></a></li>
+                <li class="ftco-animate"><a><span class="icon-instagram"></span></a></li>
               </ul>
             </div>
           </div>

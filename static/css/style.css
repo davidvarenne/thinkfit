@@ -7544,9 +7544,9 @@ h1, h2, h3, h4, h5,
         .hero-wrap .slider-text .breadcrumbs span a {
           color: #000; }
     .hero-wrap .slider-text h1 {
-      font-size: 80px;
+      font-size: 40px;
       color: #000;
-      font-weight: 200; }
+      font-weight: 300; }
       .hero-wrap .slider-text h1 span {
         color: #000; }
     .hero-wrap .slider-text h2 {
@@ -7724,7 +7724,7 @@ h1, h2, h3, h4, h5,
   .services .icon {
     width: 100px;
     height: 100px;
-    background: #f7ebf3;
+    background: #ebe0df;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     -ms-border-radius: 50%;
@@ -7752,7 +7752,7 @@ h1, h2, h3, h4, h5,
     background: #b18982;
     z-index: 0;
     content: '';
-    opacity: 0.4;
+    opacity: 0.3;
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     -webkit-transition: all 0.3s ease;
