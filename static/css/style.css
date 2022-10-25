@@ -7752,7 +7752,7 @@ h1, h2, h3, h4, h5,
     background: #b18982;
     z-index: 0;
     content: '';
-    opacity: 0.3;
+    opacity: 0.45;
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     -webkit-transition: all 0.3s ease;
