@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Request, Body
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse,Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
@@ -45,6 +45,30 @@ async def render(request: Request):
 @app.get("/comingsoon")
 async def render(request: Request):
     return templates.TemplateResponse("comingsoon.html", {"request": request})
+
+@app.get("/sitemap.xml")
+async def render(request: Request):
+  data = """<?xml version="1.0" encoding="UTF-8"?>
+          <urlset
+                xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                      http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+
+          <url>
+            <loc>http://www.fatimatringalithinkfit.com/</loc>
+            <lastmod>2022-10-27T10:46:27+00:00</lastmod>
+            <priority>1.00</priority>
+          </url>
+          <url>
+            <loc>http://www.fatimatringalithinkfit.com/contacts</loc>
+            <lastmod>2022-10-27T10:46:27+00:00</lastmod>
+            <priority>0.80</priority>
+          </url>
+          </urlset>
+  """
+  return Response(content=data, media_type="application/xml")
 
 @app.get("/send_message")
 async def send_message(request: Request):
