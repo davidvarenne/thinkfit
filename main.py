@@ -39,15 +39,15 @@ async def index(request: Request):
     return templates.TemplateResponse("index.html", {"request": request}) 
 
 @app.get("/contacts")
-async def render(request: Request):
+async def contacts(request: Request):
     return templates.TemplateResponse("contact.html", {"request": request})
   
 @app.get("/comingsoon")
-async def render(request: Request):
+async def comingsoon(request: Request):
     return templates.TemplateResponse("comingsoon.html", {"request": request})
 
 @app.get("/sitemap.xml")
-async def render(request: Request):
+async def sitemap(request: Request):
   data = """<?xml version="1.0" encoding="UTF-8"?>
 <urlset
       xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -99,7 +99,18 @@ async def send_message(request: Request):
 
   return JSONResponse(content=message)
 
+@app.get('/robots.txt')
+def robots():
+    data = """
+    User-agent: Googlebot
+    Disallow: /send_message/
 
+    User-agent: *
+    Allow: /
+
+    Sitemap: https://www.fatimatringalithinkfit.com/sitemap.xml
+    """
+    return Response(content=data, media_type='text/plain')
 
 
 
