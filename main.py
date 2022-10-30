@@ -71,6 +71,7 @@ async def sitemap(request: Request):
 </urlset>
   """
   return Response(content=data, media_type="application/xml")
+  # return templates.TemplateResponse("sitemap.xml", {"request": request})
 
 @app.get("/send_message")
 async def send_message(request: Request):
