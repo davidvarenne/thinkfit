@@ -36,26 +36,66 @@
 
 	<script type="application/ld+json">
 		{
-		  "@context": "https://schema.org/",
-		  "@type": "AggregateRating",
-		  "description": "Personal training.",
-		  "itemReviewed": {
-			"@type": "Course",
-			"image": "",
-			"name": "Thinkfit",
-			"telephone": "+39 3920276464",
-			"address" : {
-			  "@type": "PostalAddress",
-			  "streetAddress": "246 Circonvallazione dei Fiori",
-			  "addressLocality": "Taranto",
-			  "addressRegion": "TA",
-			  "postalCode": "74122",
-			  "addressCountry": "IT"
+		  "@context": "https://schema.org",
+		  "@type": "Restaurant",
+		  "image": [
+		   ],
+		  "name": "Thinkfit",
+		  "address": {
+			"@type": "PostalAddress",
+			"streetAddress": "246, Circonvallazione dei fiori",
+			"addressLocality": "Taranto",
+			"addressRegion": "TA",
+			"postalCode": "74122",
+			"addressCountry": "IT"
+		  },
+		  "review": {
+			"@type": "Review",
+			"reviewRating": {
+			  "@type": "Rating",
+			  "ratingValue": "4.7",
+			  "bestRating": "5"
+			},
+			"author": {
+			  "@type": "Person",
+			  "name": "Annalisa R."
 			}
 		  },
-		  "ratingValue": "4.7",
-		  "bestRating": "5",
-		  "ratingCount": "237"
+		  "geo": {
+			"@type": "GeoCoordinates",
+			"latitude": 40.761293,
+			"longitude": -73.982294
+		  },
+		  "url": "http://www.fatimatringalithinkfit.com/",
+		  "telephone": "+39 393 0376464",
+		  "priceRange": "$$",
+		  "openingHoursSpecification": [
+			{
+			  "@type": "OpeningHoursSpecification",
+			  "dayOfWeek": [
+				"Monday",
+				"Tuesday"
+			  ],
+			  "opens": "6:30",
+			  "closes": "20:00"
+			},
+			{
+			  "@type": "OpeningHoursSpecification",
+			  "dayOfWeek": [
+				"Wednesday",
+				"Thursday",
+				"Friday"
+			  ],
+			  "opens": "6:30",
+			  "closes": "19:30"
+			},
+		  ],
+		  "acceptsReservations": "True",
+		  "aggregateRating": {
+			"@type": "AggregateRating",
+			"ratingValue": "4.7",
+			"ratingCount": "237"
+		  },
 		}
 	</script>
 
@@ -65,17 +105,17 @@
 		  "@type": "FAQPage",
 		  "mainEntity": [{
 			"@type": "Question",
-			"name": "What is the return policy?",
+			"name": "Conviene davvero andare dal Personal Trainer?",
 			"acceptedAnswer": {
 			  "@type": "Answer",
-			  "text": "<p>Most unopened items in new condition and returned within <b>90 days</b> will receive a refund or exchange. Some items have a modified return policy noted on the receipt or packing slip. Items that are opened or damaged or do not have a receipt may be denied a refund or exchange. Items purchased online or in-store may be returned to any store.</p><p>Online purchases may be returned via a major parcel carrier. <a href=http://example.com/returns> Click here </a> to initiate a return.</p>"
+			  "text": "<p>Andare da un personal trainer potrebbe sembrare un lusso se non si ha un buon budget, ma se si vuole davvero avere risultati visibili resta un ottimo investimento per il proprio corpo. Il miglioramento della propria salute puo avere grandi benefici durante la vita, anche ridurre costi di sanita.</p>"
 			}
 		  }, {
 			"@type": "Question",
-			"name": "How long does it take to process a refund?",
+			"name": "Quanto dovrei spendere per un Personal Trainer?",
 			"acceptedAnswer": {
 			  "@type": "Answer",
-			  "text": "We will reimburse you for returned items in the same way you paid for them. For example, any amounts deducted from a gift card will be credited back to a gift card. For returns by mail, once we receive your return, we will process it within 4–5 business days. It may take up to 7 days after we process the return to reflect in your account, depending on your financial institution's processing time."
+			  "text": "In media un costo di un personal trainer varia dai 15 ai 35 euro l'ora."
 			}
 		  }, {
 			"@type": "Question",
@@ -86,10 +126,10 @@
 			}
 		  }, {
 			"@type": "Question",
-			"name": "When will my credit card be charged?",
+			"name": "Quanto tempo dovrei restare con un personal trainer?",
 			"acceptedAnswer": {
 			  "@type": "Answer",
-			  "text": "We'll attempt to securely charge your credit card at the point of purchase online. If there's a problem, you'll be notified on the spot and prompted to use another card. Once we receive verification of sufficient funds, your payment will be completed and transferred securely to us. Your account will be charged in 24 to 48 hours."
+			  "text": "Dipende dalla situazione iniziale e dove si vuole arrivare; in media bisogna considerare minimo un periodo di 3-6 mesi per vedere i risultati."
 			}
 		  }, {
 			"@type": "Question",
