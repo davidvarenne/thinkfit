@@ -7,6 +7,11 @@ from fastapi.responses import JSONResponse
 import smtplib, ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import pickle
+import datetime
+
+
+database = pickle.load( open("db.pkl", "rb") )
 
 
 def send_email(sender,password,receiver,html,subject):
@@ -28,6 +33,32 @@ def send_email(sender,password,receiver,html,subject):
           sender_email, receiver_email, message.as_string()
       )
 
+def get_data_from_database(id,database = database):
+  data=database[id]
+  return data
+
+def get_ids(param):
+  import random
+  ids = list(set([random.randint(1,6) for i in range(1,random.randint(1,5))]))
+  print(param, ids)
+  return ids 
+
+def query_db(param, database = database):
+
+  # ids = get_ids(param)
+  ids = [1,2]
+  template = {f"{tag}{index}": '' for tag in ['title','href','image','year','month','day'] for index in range(1,7)}
+
+  for index,id in enumerate(ids,1):
+    template[f'title{index}'] = database[id]['maintitle']
+    template[f'href{index}'] = f"post/{database[id]['item_id']}"
+    template[f'subtitle{index}'] = database[id]['subtitle']
+    template[f'image{index}'] = f"background-image: url({database[id]['image1']});"
+    template[f'year{index}'] = str(database[id]['date'].year)
+    template[f'month{index}'] = str(database[id]['date'].month)
+    template[f'day{index}'] = str(database[id]['date'].day)
+
+  return template
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -42,9 +73,30 @@ async def index(request: Request):
 async def contacts(request: Request):
     return templates.TemplateResponse("contact.html", {"request": request})
   
+@app.get("/about")
+async def contacts(request: Request):
+    return templates.TemplateResponse("about.html", {"request": request})
+  
 @app.get("/comingsoon")
 async def comingsoon(request: Request):
     return templates.TemplateResponse("comingsoon.html", {"request": request})
+
+@app.get("/blog")
+async def blog(request: Request):
+  param = request.query_params._dict
+  data = query_db(param)
+  data['request'] = request
+  return templates.TemplateResponse("blog.html", data)
+
+@app.get("/post/{item_id}")
+def get_article(item_id: int,request: Request):
+  try:
+    data = get_data_from_database(item_id)
+    data['request'] = request
+    return templates.TemplateResponse("blogtemplate.html", data)
+  except:
+    return templates.TemplateResponse("comingsoon.html", {"request": request})
+
 
 @app.get("/sitemap.xml")
 async def sitemap(request: Request):
@@ -117,4 +169,4 @@ def robots():
 
 if __name__ == "__main__":
   # uvicorn main:app --reload
-    uvicorn.run(app, host="localhost", port=7777)
+    uvicorn.run(app, host="localhost", port=8888)
