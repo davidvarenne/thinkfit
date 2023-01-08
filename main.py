@@ -10,7 +10,6 @@ from email.mime.multipart import MIMEMultipart
 import pickle
 import datetime
 
-
 database = pickle.load( open("db.pkl", "rb") )
 
 
